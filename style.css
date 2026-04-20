@@ -1,0 +1,22 @@
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(120deg, #4facfe, #00f2fe);
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+.container {
+    text-align: center;
+    margin-top: 100px;
+}
+
+h1 {
+    font-size: 40px;
+    color: white;
+}
+
+p {
+    font-size: 20px;
+    color: white;
+}
