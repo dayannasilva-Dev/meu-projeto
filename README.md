@@ -13,7 +13,7 @@ Site de portfólio pessoal desenvolvido com HTML, Tailwind CSS e JavaScript.
 - GitHub Pages
 
 ## 📁 Estrutura do projeto
-\```
+```
 meu-projeto/
 ├── assets/
 │   ├── css/
@@ -21,7 +21,7 @@ meu-projeto/
 │   └── img/
 ├── index.html
 └── README.md
-\```
+```
 
 ## 👩‍💻 Autora
 Dayana Silva — Analista de Sistemas Pleno
