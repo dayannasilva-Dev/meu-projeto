@@ -26,6 +26,31 @@
             }
         }
     </script>
+    <style>
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes pulse-cyan {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(37, 230, 220, 0.4); }
+            50% { box-shadow: 0 0 0 6px rgba(27, 200, 243, 0); }
+        }
+        .hashtag {
+            animation: fadeInUp 0.5s ease forwards, pulse-cyan 2s ease-in-out infinite;
+            opacity: 0;
+        }
+        .hashtag:hover {
+            background-color: #16bdb4 !important;
+            color: #e9d5ff !important;
+            transform: scale(1.1);
+            transition: all 0.2s ease;
+        }
+        .hashtag:nth-child(1) { animation-delay: 0.1s; }
+        .hashtag:nth-child(2) { animation-delay: 0.2s; }
+        .hashtag:nth-child(3) { animation-delay: 0.3s; }
+        .hashtag:nth-child(4) { animation-delay: 0.4s; }
+        .hashtag:nth-child(5) { animation-delay: 0.5s; }
+    </style>
 </head>
 
 <body class="bg-dark-900 text-dark-100 font-sans min-h-screen">
@@ -33,7 +58,7 @@
     <!-- Header -->
     <header class="bg-dark-800 border-b border-dark-700 py-12 text-center">
         <h1 class="text-2xl font-medium text-dark-100 tracking-wide mb-2">Hello, I'm Dayana 👩‍💻</h1>
-        <p class="text-dark-400 text-sm">Developer in Evolution🚀</p>
+        <p class="text-dark-400 text-sm">Developer in Evolution 🚀</p>
     </header>
 
     <!-- Nav -->
@@ -51,20 +76,46 @@
         <!-- Sobre mim -->
         <section id="sobre" class="bg-dark-800 border border-dark-700 rounded-xl p-7 hover:-translate-y-1 hover:border-dark-600 transition-all duration-200">
             <h2 class="text-xs font-medium text-dark-500 uppercase tracking-widest mb-4">Sobre mim</h2>
-            <p class="text-dark-300 text-sm leading-relaxed">
-                Tenho experiência com suporte técnico e estou aprendendo desenvolvimento web.
+
+            <p class="text-dark-300 text-sm leading-relaxed mb-4">
+                Atuo como Analista de Sistemas Pleno com sólida experiência no desenvolvimento e 
+                sustentação de soluções em Java, com foco em ambientes corporativos e sistemas ERP, 
+                especialmente o Datasul. Ao longo da minha trajetória, desenvolvi competências que unem 
+                visão técnica e entendimento de negócio, contribuindo para a evolução contínua de 
+                sistemas críticos e otimizando processos organizacionais.
             </p>
+
+            <p class="text-dark-300 text-sm leading-relaxed mb-4">
+                Sempre em busca de evolução profissional, acompanhando novas tecnologias e boas práticas 
+                de desenvolvimento para entregar soluções cada vez mais eficientes. 🚀
+            </p>
+
+            <div class="flex flex-wrap gap-2">
+                <span class="hashtag bg-purple-900 text-purple-300 text-xs px-3 py-1 rounded-full border border-purple-700 cursor-pointer">#AnalistaDeSistemas</span>
+                <span class="hashtag bg-purple-900 text-purple-300 text-xs px-3 py-1 rounded-full border border-purple-700 cursor-pointer">#Tecnologia</span>
+                <span class="hashtag bg-purple-900 text-purple-300 text-xs px-3 py-1 rounded-full border border-purple-700 cursor-pointer">#Desenvolvimento</span>
+                <span class="hashtag bg-purple-900 text-purple-300 text-xs px-3 py-1 rounded-full border border-purple-700 cursor-pointer">#TI</span>
+                <span class="hashtag bg-purple-900 text-purple-300 text-xs px-3 py-1 rounded-full border border-purple-700 cursor-pointer">#Carreira</span>
+            </div>
         </section>
 
         <!-- Habilidades -->
         <section id="habilidades" class="bg-dark-800 border border-dark-700 rounded-xl p-7 hover:-translate-y-1 hover:border-dark-600 transition-all duration-200">
             <h2 class="text-xs font-medium text-dark-500 uppercase tracking-widest mb-4">Habilidades</h2>
             <div class="flex flex-wrap gap-2">
-                <span class="bg-dark-700 text-dark-300 text-xs px-3 py-1 rounded-full border border-dark-600">Java</span>
-                <span class="bg-dark-700 text-dark-300 text-xs px-3 py-1 rounded-full border border-dark-600">JavaScript</span>
-                <span class="bg-dark-700 text-dark-300 text-xs px-3 py-1 rounded-full border border-dark-600">CSS</span>
-                <span class="bg-dark-700 text-dark-300 text-xs px-3 py-1 rounded-full border border-dark-600">HTML</span>
-                <span class="bg-dark-700 text-dark-300 text-xs px-3 py-1 rounded-full border border-dark-600">Git/GitHub</span>
+                <span class="hashtag bg-teal-900 text-teal-300 text-xs px-3 py-1 rounded-full border border-teal-700 cursor-pointer">Java</span>
+                <span class="hashtag bg-teal-900 text-teal-300 text-xs px-3 py-1 rounded-full border border-teal-700 cursor-pointer">JavaScript</span>
+                <span class="hashtag bg-teal-900 text-teal-300 text-xs px-3 py-1 rounded-full border border-teal-700 cursor-pointer">TypeScript</span>
+                <span class="hashtag bg-teal-900 text-teal-300 text-xs px-3 py-1 rounded-full border border-teal-700 cursor-pointer">ReactJS</span>
+                <span class="hashtag bg-teal-900 text-teal-300 text-xs px-3 py-1 rounded-full border border-teal-700 cursor-pointer">Maven</span>
+                <span class="hashtag bg-teal-900 text-teal-300 text-xs px-3 py-1 rounded-full border border-teal-700 cursor-pointer">Spring</span>
+                <span class="hashtag bg-teal-900 text-teal-300 text-xs px-3 py-1 rounded-full border border-teal-700 cursor-pointer">Spring Boot</span>
+                <span class="hashtag bg-teal-900 text-teal-300 text-xs px-3 py-1 rounded-full border border-teal-700 cursor-pointer">CSS</span>
+                <span class="hashtag bg-teal-900 text-teal-300 text-xs px-3 py-1 rounded-full border border-teal-700 cursor-pointer">HTML</span>
+                <span class="hashtag bg-teal-900 text-teal-300 text-xs px-3 py-1 rounded-full border border-teal-700 cursor-pointer">Git/GitHub</span>
+                <span class="hashtag bg-teal-900 text-teal-300 text-xs px-3 py-1 rounded-full border border-teal-700 cursor-pointer">JDBC Java Database Connectivity</span>
+                <span class="hashtag bg-teal-900 text-teal-300 text-xs px-3 py-1 rounded-full border border-teal-700 cursor-pointer">JDBC Modelo JDBI3 e JDBC</span>
+                <span class="hashtag bg-teal-900 text-teal-300 text-xs px-3 py-1 rounded-full border border-teal-700 cursor-pointer">JDBC Frameworks ORM — Hibernate, JPA, Spring Data JPA</span>
             </div>
         </section>
 
@@ -112,6 +163,6 @@
         <p>© 2024 Dayana. Todos os direitos reservados.</p>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="assets/js/script.js"></script>
 </body>
 </html>
