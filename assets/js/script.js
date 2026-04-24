@@ -1,21 +1,27 @@
-const form = document.getElementById('form-contato');
-const alerta = document.getElementById('sucesso');
+const tags = [
+  '</div>', '<li>', '</body>', '<p>', '</ul>',
+  '<section>', '<span>', '</h1>', '<header>',
+  '</nav>', '<a>', '<article>', '<footer>'
+];
 
-form.addEventListener('submit', function (e) {
-    e.preventDefault();
+const container = document.querySelector('.hero');
 
-    const nome = document.getElementById('nome').value.trim();
-    const email = document.getElementById('email').value.trim();
-    const mensagem = document.getElementById('mensagem').value.trim();
+function spawnTag() {
+  const el = document.createElement('span');
+  el.className = 'floating-tag';
+  el.textContent = tags[Math.floor(Math.random() * tags.length)];
 
-    if (nome === '' || email === '' || mensagem === '') {
-        alerta.textContent = '⚠️ Por favor, preencha todos os campos.';
-        alerta.className = 'mt-2 p-3 rounded-lg text-sm font-medium bg-red-900 text-red-200 border border-red-800';
-        return;
-    }
+  const x = Math.random() * 100;
+  const dur = 8 + Math.random() * 10;
+  const rot = (Math.random() - 0.5) * 20;
 
-    alerta.textContent = `✅ Obrigado, ${nome}! Sua mensagem foi enviada com sucesso.`;
-    alerta.className = 'mt-2 p-3 rounded-lg text-sm font-medium bg-green-900 text-green-200 border border-green-800';
+  el.style.left = x + '%';
+  el.style.bottom = '-30px';
+  el.style.animationDuration = dur + 's';
+  el.style.transform = `rotate(${rot}deg)`;
 
-    form.reset();
-});
+  container.appendChild(el);
+  setTimeout(() => el.remove(), dur * 1000);
+}
+
+setInterval(spawnTag, 700);
