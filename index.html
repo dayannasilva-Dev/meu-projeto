@@ -128,21 +128,14 @@
     </style>
 </head>
 
-<body class="bg-dark-900 text-dark-100 font-sans min-h-screen">
+<body class="text-dark-100 font-sans min-h-screen" style="background: radial-gradient(ellipse at top left, rgba(124,58,237,0.18) 0%, transparent 50%), radial-gradient(ellipse at bottom right, rgba(22,189,180,0.15) 0%, transparent 50%), #131312;">
 
-       <!-- Header -->
-       <header id="hero" class="border-b border-dark-700 py-16 text-center relative overflow-hidden"
-        style="min-height:430px;
-               background-image: url('assets/img/bg-header.webp');
-               background-size: 50%;
-               background-position: top right;
-               background-repeat: no-repeat;">
+    <!-- Header -->
+    <header id="hero" class="border-b border-dark-700 py-16 text-center relative overflow-hidden" style="min-height:320px; background-image: url('assets/img/bg-header.webp'); background-size: 60%; background-position: center; background-repeat: no-repeat;">
 
-         <!-- Overlay escuro -->
-         <div class="absolute inset-0" style="background: rgba(13,13,12,0.78);"></div>
-         <!-- Gradiente teal sutil -->
-         <div class="absolute inset-0 opacity-50" style="background: radial-gradient(circle at 50% 100%, #16bdb4, transparent 40%);"></div>      
-
+        
+        <div class="absolute inset-0" style="background: rgba(13,13,12,0.78);"></div>
+        <div class="absolute inset-0 opacity-10" style="background: radial-gradient(circle at 50% 50%, #16bdb4, transparent 60%);"></div>
 
         <!-- Tags estáticas espalhadas igual ao design de referência -->
         <div class="bg-tag" style="top:14px;left:17%;">&lt;/div&gt;<br>&lt;body&gt;</div>
@@ -199,7 +192,7 @@
     <!-- Nav -->
     <nav class="bg-dark-800 border-b border-dark-700 sticky top-0 z-50">
         <ul class="flex justify-center gap-8 py-3">
-            <li><a href="#sobre"       class="text-teal-400 text-sm hover:text-teal-300 transition-colors" style="font-family:'Courier New',Courier,monospace;font-weight:800;letter-spacing:2px;">Sobre mim</a></li>
+            <li><a href="#sobre"       class="text-teal-400 text-sm hover:text-teal-300 transition-colors" style="font-family:'Courier New',Courier,monospace;font-weight:700;letter-spacing:2px;">Sobre mim</a></li>
             <li><a href="#habilidades" class="text-teal-400 text-sm hover:text-teal-300 transition-colors" style="font-family:'Courier New',Courier,monospace;font-weight:700;letter-spacing:2px;">Habilidades</a></li>
             <li><a href="#projetos"    class="text-teal-400 text-sm hover:text-teal-300 transition-colors" style="font-family:'Courier New',Courier,monospace;font-weight:700;letter-spacing:2px;">Projetos</a></li>
             <li><a href="#contato"     class="text-teal-400 text-sm hover:text-teal-300 transition-colors" style="font-family:'Courier New',Courier,monospace;font-weight:700;letter-spacing:2px;">Contato</a></li>
@@ -207,6 +200,8 @@
     </nav>
 
     <!-- Conteúdo -->
+    <div style="background-image: url('assets/img/bg-footer.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat; filter: brightness(1.3);">
+        <div style="background: rgba(13,13,12,0.40);">
     <main class="max-w-2xl mx-auto px-6 py-10 flex flex-col gap-6">
 
         <!-- Sobre mim -->
@@ -225,7 +220,7 @@
                 de desenvolvimento para entregar soluções cada vez mais eficientes. 🚀
             </p>
             <div class="flex flex-wrap gap-2">
-                <span class="hashtag bg-purple-900 text-purple-300 text-xs px-3 py-1 rounded-full border border-purple-700 cursor-pointer">#AnaliseDeSistemas</span>
+                <span class="hashtag bg-purple-900 text-purple-300 text-xs px-3 py-1 rounded-full border border-purple-700 cursor-pointer">#AnalistaDeSistemas</span>
                 <span class="hashtag bg-purple-900 text-purple-300 text-xs px-3 py-1 rounded-full border border-purple-700 cursor-pointer">#Tecnologia</span>
                 <span class="hashtag bg-purple-900 text-purple-300 text-xs px-3 py-1 rounded-full border border-purple-700 cursor-pointer">#Desenvolvimento</span>
                 <span class="hashtag bg-purple-900 text-purple-300 text-xs px-3 py-1 rounded-full border border-purple-700 cursor-pointer">#TI</span>
@@ -243,19 +238,11 @@
                     <div class="progress-bar"><div class="progress-fill" data-width="90"></div></div>
                 </div>
                 <div>
-                    <div class="flex justify-between text-xs text-dark-400 mb-1"><span>Maven</span><span>85%</span></div>
-                    <div class="progress-bar"><div class="progress-fill" data-width="85"></div></div>
-                </div>
-                <div>
-                    <div class="flex justify-between text-xs text-dark-400 mb-1"><span>Spring / Spring Boot</span><span>85%</span></div>
-                    <div class="progress-bar"><div class="progress-fill" data-width="85"></div></div>
-                </div>
-                <div>
                     <div class="flex justify-between text-xs text-dark-400 mb-1"><span>JavaScript / TypeScript</span><span>75%</span></div>
                     <div class="progress-bar"><div class="progress-fill" data-width="75"></div></div>
                 </div>
                 <div>
-                    <div class="flex justify-between text-xs text-dark-400 mb-1"><span>SQL / MySQL</span><span>80%</span></div>
+                    <div class="flex justify-between text-xs text-dark-400 mb-1"><span>Spring Boot</span><span>80%</span></div>
                     <div class="progress-bar"><div class="progress-fill" data-width="80"></div></div>
                 </div>
                 <div>
@@ -264,10 +251,6 @@
                 </div>
                 <div>
                     <div class="flex justify-between text-xs text-dark-400 mb-1"><span>HTML / CSS</span><span>85%</span></div>
-                    <div class="progress-bar"><div class="progress-fill" data-width="85"></div></div>
-                </div>
-                <div>
-                    <div class="flex justify-between text-xs text-dark-400 mb-1"><span>Hibernate / JPA</span><span>85%</span></div>
                     <div class="progress-bar"><div class="progress-fill" data-width="85"></div></div>
                 </div>
             </div>
@@ -332,10 +315,12 @@
         </section>
 
     </main>
+        </div>
+    </div>
 
     <!-- Footer -->
     <footer class="text-center py-6 text-xs text-dark-500 border-t border-dark-700">
-        <p>© 2026 Dayana Silva. Todos os direitos reservados.</p>
+        <p>© 2025 Dayana Silva. Todos os direitos reservados.</p>
     </footer>
 
     <script src="assets/js/script.js"></script>
