@@ -1,27 +1,39 @@
-const tags = [
-  '</div>', '<li>', '</body>', '<p>', '</ul>',
-  '<section>', '<span>', '</h1>', '<header>',
-  '</nav>', '<a>', '<article>', '<footer>'
-];
+// ================================
+//   TABS - NAVEGAÇÃO
+// ================================
 
-const container = document.querySelector('.hero');
+const tabNames = ['sobre', 'projetos', 'habilidades', 'contato'];
 
-function spawnTag() {
-  const el = document.createElement('span');
-  el.className = 'floating-tag';
-  el.textContent = tags[Math.floor(Math.random() * tags.length)];
+function switchTab(name) {
+  // Atualiza os botões
+  document.querySelectorAll('.tab-btn').forEach((btn, i) => {
+    const active = tabNames[i] === name;
+    btn.classList.toggle('active', active);
+    btn.setAttribute('aria-selected', active);
+  });
 
-  const x = Math.random() * 100;
-  const dur = 8 + Math.random() * 10;
-  const rot = (Math.random() - 0.5) * 20;
+  // Atualiza os painéis
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
 
-  el.style.left = x + '%';
-  el.style.bottom = '-30px';
-  el.style.animationDuration = dur + 's';
-  el.style.transform = `rotate(${rot}deg)`;
-
-  container.appendChild(el);
-  setTimeout(() => el.remove(), dur * 1000);
+  // Anima as barras ao entrar em Habilidades
+  if (name === 'habilidades') animateBars();
 }
 
-setInterval(spawnTag, 700);
+// ================================
+//   HABILIDADES - ANIMAÇÃO DAS BARRAS
+// ================================
+
+function animateBars() {
+  document.querySelectorAll('.skill-bar').forEach(bar => {
+    bar.style.width = '0';
+    setTimeout(() => {
+      bar.style.width = bar.dataset.width + '%';
+    }, 50);
+  });
+}
+
+// Anima ao carregar a página (caso a aba Habilidades seja a padrão)
+window.addEventListener('load', () => {
+  animateBars();
+});

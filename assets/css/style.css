@@ -1,28 +1,266 @@
-/* ─── Fundo escuro com tags HTML flutuantes ─── */
-
-body {
-  background-color: #0c0303;
-  overflow-x: hidden;
+/* ================================
+   RESET & BASE
+================================ */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-.hero {
-  position: relative;
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: #f5f5f5;
+  color: #1a1a1a;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 3rem 1rem;
+}
+
+/* ================================
+   HEADER
+================================ */
+header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+header h1 {
+  font-size: 2rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+header p {
+  font-size: 0.95rem;
+  color: #666;
+  margin-top: 6px;
+}
+
+/* ================================
+   CONTAINER
+================================ */
+.container {
+  width: 100%;
+  max-width: 700px;
+  background: #ffffff;
+  border-radius: 16px;
+  border: 1px solid #e0e0e0;
   overflow: hidden;
 }
 
-.floating-tag {
-  position: absolute;
-  color: rgba(255, 255, 255, 0.07);
-  font-family: 'Courier New', monospace;
-  font-size: 13px;
-  white-space: nowrap;
-  pointer-events: none;
-  animation: floatTag linear infinite;
+/* ================================
+   TABS - NAVEGAÇÃO
+================================ */
+.tabs-nav {
+  display: flex;
+  border-bottom: 1px solid #e0e0e0;
+  background: #fafafa;
 }
 
-@keyframes floatTag {
-  0%   { transform: translateY(0);       opacity: 0; }
-  8%   { opacity: 1; }
-  90%  { opacity: 1; }
-  100% { transform: translateY(-100vh); opacity: 0; }
+.tab-btn {
+  flex: 1;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 14px 10px;
+  font-size: 14px;
+  font-weight: 400;
+  color: #888;
+  position: relative;
+  transition: color 0.2s, background 0.2s;
+}
+
+.tab-btn::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 10%;
+  right: 10%;
+  height: 2px;
+  background: #1a1a1a;
+  border-radius: 2px 2px 0 0;
+  transform: scaleX(0);
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.tab-btn:hover {
+  color: #1a1a1a;
+  background: #f0f0f0;
+}
+
+.tab-btn.active {
+  color: #1a1a1a;
+  font-weight: 600;
+  background: #ffffff;
+}
+
+.tab-btn.active::after {
+  transform: scaleX(1);
+}
+
+/* ================================
+   TABS - PAINÉIS
+================================ */
+.tab-panel {
+  display: none;
+  padding: 2rem;
+  animation: fadeSlide 0.3s ease;
+}
+
+.tab-panel.active {
+  display: block;
+}
+
+@keyframes fadeSlide {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.section-label {
+  font-size: 11px;
+  color: #aaa;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 1rem;
+}
+
+/* ================================
+   SOBRE
+================================ */
+.bio {
+  font-size: 15px;
+  color: #444;
+  line-height: 1.75;
+  margin-bottom: 1.5rem;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 12px;
+}
+
+.card {
+  background: #f7f7f7;
+  border: 1px solid #e8e8e8;
+  border-radius: 12px;
+  padding: 1rem 1.1rem;
+}
+
+.card-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin-bottom: 4px;
+}
+
+.card-sub {
+  font-size: 13px;
+  color: #777;
+}
+
+/* ================================
+   PROJETOS
+================================ */
+.project-card {
+  background: #f7f7f7;
+  border: 1px solid #e8e8e8;
+  border-radius: 12px;
+  padding: 1.1rem 1.25rem;
+  margin-bottom: 12px;
+  transition: border-color 0.2s, transform 0.2s;
+}
+
+.project-card:hover {
+  border-color: #bbb;
+  transform: translateY(-2px);
+}
+
+.tags {
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.tag {
+  font-size: 11px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  border: 1px solid #ddd;
+  color: #666;
+  background: #fff;
+}
+
+/* ================================
+   HABILIDADES
+================================ */
+.skill-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+
+.skill-name {
+  font-size: 13px;
+  color: #555;
+  min-width: 90px;
+}
+
+.skill-bar-bg {
+  flex: 1;
+  height: 5px;
+  background: #ebebeb;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.skill-bar {
+  height: 5px;
+  border-radius: 3px;
+  background: #1a1a1a;
+  width: 0;
+  transition: width 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.skill-pct {
+  font-size: 12px;
+  color: #aaa;
+  min-width: 30px;
+  text-align: right;
+}
+
+/* ================================
+   CONTATO
+================================ */
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 0;
+  border-bottom: 1px solid #f0f0f0;
+  font-size: 14px;
+}
+
+.contact-item:last-child {
+  border-bottom: none;
+}
+
+.contact-label {
+  font-weight: 600;
+  color: #1a1a1a;
+  min-width: 70px;
+}
+
+.contact-item a {
+  color: #555;
+  text-decoration: none;
+}
+
+.contact-item a:hover {
+  color: #1a1a1a;
+  text-decoration: underline;
 }

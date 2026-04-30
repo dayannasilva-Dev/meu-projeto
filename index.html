@@ -109,6 +109,11 @@
             opacity: 1;
             transform: translateY(0);
         }
+        /* Container das tabs sempre visível */
+        .tabs-container {
+            opacity: 1 !important;
+            transform: none !important;
+        }
 
         .progress-bar {
             height: 4px;
@@ -120,28 +125,136 @@
             height: 100%;
             border-radius: 99px;
             background: linear-gradient(90deg, #16bdb4, #7c3aed);
-            width: 0;
+            width: 0%;
             transition: width 1.2s ease;
         }
 
         html { scroll-behavior: smooth; }
+
+        /* ── Transição flutuante nas seções ── */
+        .section-animate {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        .section-animate.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .section-animate.fly-in {
+            animation: flyIn 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+        @keyframes flyIn {
+            0%   { opacity: 0; transform: translateY(60px) scale(0.97); }
+            100% { opacity: 1; transform: translateY(0)   scale(1);    }
+        }
+
+        /* ── Efeito moderno nos links da nav ── */
+        nav a {
+            position: relative;
+            padding-bottom: 4px;
+        }
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #16bdb4, #7c3aed);
+            border-radius: 99px;
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+        nav a:hover::after,
+        nav a.active::after {
+            width: 100%;
+        }
+        nav a:hover {
+            color: #fff !important;
+            text-shadow: 0 0 12px rgba(22, 189, 180, 0.8), 0 0 24px rgba(124, 58, 237, 0.4);
+            transition: all 0.3s ease;
+        }
+        nav a.active {
+            color: #fff !important;
+            text-shadow: 0 0 12px rgba(22, 189, 180, 0.8), 0 0 24px rgba(124, 58, 237, 0.4);
+        }
+
+        /* ── TABS ── */
+        .tabs-nav {
+            display: flex;
+            border-bottom: 1px solid #2c2c2a;
+            background: #1a1a18;
+            border-radius: 12px 12px 0 0;
+            overflow: hidden;
+        }
+        .tab-btn {
+            flex: 1;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 13px 10px;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            font-family: 'Courier New', Courier, monospace;
+            color: #5f5e5a;
+            position: relative;
+            transition: color 0.2s, background 0.2s;
+            text-transform: uppercase;
+        }
+        .tab-btn::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 10%;
+            right: 10%;
+            height: 2px;
+            background: linear-gradient(90deg, #16bdb4, #7c3aed);
+            border-radius: 2px 2px 0 0;
+            transform: scaleX(0);
+            transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .tab-btn:hover {
+            color: #b4b2a9;
+            background: #2c2c2a;
+        }
+        .tab-btn.active {
+            color: #16bdb4;
+            background: #1a1a18;
+            text-shadow: 0 0 10px rgba(22, 189, 180, 0.5);
+        }
+        .tab-btn.active::after {
+            transform: scaleX(1);
+        }
+        .tab-panel {
+            display: none;
+            animation: fadeSlide 0.3s ease;
+        }
+        .tab-panel.active {
+            display: block;
+        }
+        @keyframes fadeSlide {
+            from { opacity: 0; transform: translateY(10px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
     </style>
 </head>
 
-<body class="text-dark-100 font-sans min-h-screen" style="background: radial-gradient(ellipse at top left, rgba(124,58,237,0.18) 0%, transparent 50%), radial-gradient(ellipse at bottom right, rgba(22,189,180,0.15) 0%, transparent 50%), #131312;">
+<body class="text-dark-100 font-sans min-h-screen" style="background: radial-gradient(ellipse at top left, rgba(90, 13, 221, 0.856) 0%, transparent 50%), radial-gradient(ellipse at bottom right, rgba(22,189,180,0.15) 0%, transparent 50%), #131312;">
 
     <!-- Header -->
-    <header id="hero" class="border-b border-dark-700 py-16 text-center relative overflow-hidden" style="min-height:320px; background-image: url('assets/img/bg-header.webp'); background-size: 60%; background-position: center; background-repeat: no-repeat;">
+    <header id="hero" class="border-b border-dark-700 py-16 text-center relative overflow-hidden" style="min-height:320px; background-image: url('assets/img/bg-header.webp'); background-size: 150%; background-position: center; background-repeat: no-repeat;">
 
         
-        <div class="absolute inset-0" style="background: rgba(13,13,12,0.78);"></div>
+        <div class="absolute inset-0" style="background: rgba(3, 30, 34, 0.527);"></div>
         <div class="absolute inset-0 opacity-10" style="background: radial-gradient(circle at 50% 50%, #16bdb4, transparent 60%);"></div>
 
         <!-- Tags estáticas espalhadas igual ao design de referência -->
         <div class="bg-tag" style="top:14px;left:17%;">&lt;/div&gt;<br>&lt;body&gt;</div>
         <div class="bg-tag" style="top:60px;left:13%;">&lt;li&gt;</div>
         <div class="bg-tag" style="top:100px;left:11%;">&lt;/p&gt;<br>&lt;/&gt;<br>&lt;p /&gt;</div>
-        <div class="bg-tag" style="top:185px;left:9%;font-size:12px;">&lt;p /&gt;</div>
+        <div class="bg-tag" style="top:185px;left:15%;font-size:12px;">&lt;p /&gt;</div>
         <div class="bg-tag" style="top:230px;left:7%;">&lt;footer&gt;</div>
         <div class="bg-tag" style="top:275px;left:18%;font-size:12px;">&lt;/&gt;</div>
         <div class="bg-tag" style="top:14px;right:13%;">&lt;/li&gt;<br>&lt;/ul&gt;</div>
@@ -159,13 +272,13 @@
         </div>
 
         <h1 class="text-3xl text-dark-100 tracking-wide mb-2 animate-fadeInDown"
-            style="font-family:'Times New Roman',Times,serif;font-weight:700;font-size:2.2rem;animation-delay:0.2s;opacity:0;position:relative;z-index:1;">
+            style="font-family:'𝕱𝖗𝖆𝖐𝖙𝖚𝖗 𝕭𝖔𝖑𝖉',Times,serif;font-weight:900;font-size:2.2rem;animation-delay:0.2s;opacity:0;position:relative;z-index:1;">
             Dayana Silva
         </h1>
 
         <div class="mb-4 animate-fadeInDown" style="animation-delay:0.4s;opacity:0;position:relative;z-index:1;">
             <span class="typing-text text-teal-400 text-sm"
-                  style="font-family:'Courier New',Courier,monospace;font-weight:700;letter-spacing:2px;">DEVELOPER👽</span>
+                  style="font-family:'𝕱𝖗𝖆𝖐𝖙𝖚𝖗 𝕭𝖔𝖑𝖉',monospace;font-weight:900;letter-spacing:2px;">DEVELOPER👽</span>
         </div>
 
         <!-- Redes Sociais -->
@@ -189,131 +302,289 @@
         </div>
     </header>
 
-    <!-- Nav -->
-    <nav class="bg-dark-800 border-b border-dark-700 sticky top-0 z-50">
-        <ul class="flex justify-center gap-8 py-3">
-            <li><a href="#sobre"       class="text-teal-400 text-sm hover:text-teal-300 transition-colors" style="font-family:'Courier New',Courier,monospace;font-weight:700;letter-spacing:2px;">Sobre mim</a></li>
-            <li><a href="#habilidades" class="text-teal-400 text-sm hover:text-teal-300 transition-colors" style="font-family:'Courier New',Courier,monospace;font-weight:700;letter-spacing:2px;">Habilidades</a></li>
-            <li><a href="#projetos"    class="text-teal-400 text-sm hover:text-teal-300 transition-colors" style="font-family:'Courier New',Courier,monospace;font-weight:700;letter-spacing:2px;">Projetos</a></li>
-            <li><a href="#contato"     class="text-teal-400 text-sm hover:text-teal-300 transition-colors" style="font-family:'Courier New',Courier,monospace;font-weight:700;letter-spacing:2px;">Contato</a></li>
-        </ul>
-    </nav>
+    <!-- Nav com Tabs -->
+   <div style="position: relative; background-image: url('assets/img/bg-footer.jpg'); background-size: 60%; background-position: right center; background-repeat: no-repeat; filter: brightness(1.6)">
+        <div style="position: absolute; inset: 0; background: rgba(13,13,12,0.45);"></div>
+        <div style="position: relative;">
+    <main class="max-w-4xl mx-auto px-6 py-10">
 
-    <!-- Conteúdo -->
-    <div style="background-image: url('assets/img/bg-footer.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat; filter: brightness(1.3);">
-        <div style="background: rgba(13,13,12,0.40);">
-    <main class="max-w-2xl mx-auto px-6 py-10 flex flex-col gap-6">
+        <div class="tabs-container bg-dark-800 border border-dark-700 rounded-xl overflow-hidden">
 
-        <!-- Sobre mim -->
-        <section id="sobre" class="section-animate bg-dark-800 border border-dark-700 rounded-xl p-7 hover:-translate-y-1 hover:border-dark-600 transition-all duration-200">
-            <h2 class="text-xs font-medium text-dark-500 uppercase tracking-widest mb-4"
-                style="font-family:'Courier New',Courier,monospace;font-weight:700;letter-spacing:3px;">Sobre mim</h2>
-            <p class="text-dark-300 text-sm leading-relaxed mb-4">
-                Atuo como Analista de Sistemas Pleno com sólida experiência no desenvolvimento e 
-                sustentação de soluções em Java, com foco em ambientes corporativos e sistemas ERP, 
-                especialmente o Datasul. Ao longo da minha trajetória, desenvolvi competências que unem 
-                visão técnica e entendimento de negócio, contribuindo para a evolução contínua de 
-                sistemas críticos e otimizando processos organizacionais.
-            </p>
-            <p class="text-dark-300 text-sm leading-relaxed mb-4">
-                Sempre em busca de evolução profissional, acompanhando novas tecnologias e boas práticas 
-                de desenvolvimento para entregar soluções cada vez mais eficientes. 🚀
-            </p>
-            <div class="flex flex-wrap gap-2">
-                <span class="hashtag bg-purple-900 text-purple-300 text-xs px-3 py-1 rounded-full border border-purple-700 cursor-pointer">#AnalistaDeSistemas</span>
-                <span class="hashtag bg-purple-900 text-purple-300 text-xs px-3 py-1 rounded-full border border-purple-700 cursor-pointer">#Tecnologia</span>
-                <span class="hashtag bg-purple-900 text-purple-300 text-xs px-3 py-1 rounded-full border border-purple-700 cursor-pointer">#Desenvolvimento</span>
-                <span class="hashtag bg-purple-900 text-purple-300 text-xs px-3 py-1 rounded-full border border-purple-700 cursor-pointer">#TI</span>
-                <span class="hashtag bg-purple-900 text-purple-300 text-xs px-3 py-1 rounded-full border border-purple-700 cursor-pointer">#Carreira</span>
+            <!-- Botões das abas (substituem a nav) -->
+            <div class="tabs-nav" role="tablist">
+                <button class="tab-btn active" onclick="switchTab('sobre')" role="tab" aria-selected="true">Sobre mim</button>
+                <button class="tab-btn" onclick="switchTab('habilidades')" role="tab" aria-selected="false">Habilidades</button>
+                <button class="tab-btn" onclick="switchTab('projetos')" role="tab" aria-selected="false">Projetos</button>
+                <button class="tab-btn" onclick="switchTab('contato')" role="tab" aria-selected="false">Contato</button>
             </div>
-        </section>
 
-        <!-- Habilidades -->
-        <section id="habilidades" class="section-animate bg-dark-800 border border-dark-700 rounded-xl p-7 hover:-translate-y-1 hover:border-dark-600 transition-all duration-200">
-            <h2 class="text-xs font-medium text-dark-500 uppercase tracking-widest mb-6"
-                style="font-family:'Courier New',Courier,monospace;font-weight:700;letter-spacing:3px;">Habilidades</h2>
-            <div class="flex flex-col gap-4 mb-6">
-                <div>
-                    <div class="flex justify-between text-xs text-dark-400 mb-1"><span>Java</span><span>90%</span></div>
-                    <div class="progress-bar"><div class="progress-fill" data-width="90"></div></div>
-                </div>
-                <div>
-                    <div class="flex justify-between text-xs text-dark-400 mb-1"><span>JavaScript / TypeScript</span><span>75%</span></div>
-                    <div class="progress-bar"><div class="progress-fill" data-width="75"></div></div>
-                </div>
-                <div>
-                    <div class="flex justify-between text-xs text-dark-400 mb-1"><span>Spring Boot</span><span>80%</span></div>
-                    <div class="progress-bar"><div class="progress-fill" data-width="80"></div></div>
-                </div>
-                <div>
-                    <div class="flex justify-between text-xs text-dark-400 mb-1"><span>ReactJS</span><span>65%</span></div>
-                    <div class="progress-bar"><div class="progress-fill" data-width="65"></div></div>
-                </div>
-                <div>
-                    <div class="flex justify-between text-xs text-dark-400 mb-1"><span>HTML / CSS</span><span>85%</span></div>
-                    <div class="progress-bar"><div class="progress-fill" data-width="85"></div></div>
-                </div>
-            </div>
-            <div class="flex flex-wrap gap-2">
-                <span class="hashtag bg-teal-900 text-teal-300 text-xs px-3 py-1 rounded-full border border-teal-700 cursor-pointer">Java</span>
-                <span class="hashtag bg-teal-900 text-teal-300 text-xs px-3 py-1 rounded-full border border-teal-700 cursor-pointer">JavaScript</span>
-                <span class="hashtag bg-teal-900 text-teal-300 text-xs px-3 py-1 rounded-full border border-teal-700 cursor-pointer">TypeScript</span>
-                <span class="hashtag bg-teal-900 text-teal-300 text-xs px-3 py-1 rounded-full border border-teal-700 cursor-pointer">ReactJS</span>
-                <span class="hashtag bg-teal-900 text-teal-300 text-xs px-3 py-1 rounded-full border border-teal-700 cursor-pointer">Maven</span>
-                <span class="hashtag bg-teal-900 text-teal-300 text-xs px-3 py-1 rounded-full border border-teal-700 cursor-pointer">Spring</span>
-                <span class="hashtag bg-teal-900 text-teal-300 text-xs px-3 py-1 rounded-full border border-teal-700 cursor-pointer">Spring Boot</span>
-                <span class="hashtag bg-teal-900 text-teal-300 text-xs px-3 py-1 rounded-full border border-teal-700 cursor-pointer">CSS</span>
-                <span class="hashtag bg-teal-900 text-teal-300 text-xs px-3 py-1 rounded-full border border-teal-700 cursor-pointer">HTML</span>
-                <span class="hashtag bg-teal-900 text-teal-300 text-xs px-3 py-1 rounded-full border border-teal-700 cursor-pointer">Git/GitHub</span>
-                <span class="hashtag bg-teal-900 text-teal-300 text-xs px-3 py-1 rounded-full border border-teal-700 cursor-pointer">Hibernate / JPA</span>
-                <span class="hashtag bg-teal-900 text-teal-300 text-xs px-3 py-1 rounded-full border border-teal-700 cursor-pointer">JDBC</span>
-                <span class="hashtag bg-teal-900 text-teal-300 text-xs px-3 py-1 rounded-full border border-teal-700 cursor-pointer">MySQL</span>
-            </div>
-        </section>
+            <!-- Sobre mim -->
+            <div id="tab-sobre" class="tab-panel active p-7">
+                <h2 class="text-xs font-medium text-dark-500 uppercase tracking-widest mb-4"
+                    style="font-family:'Courier New',Courier,monospace;font-weight:700;letter-spacing:3px;">Sobre mim</h2>
 
-        <!-- Projetos -->
-        <section id="projetos" class="section-animate bg-dark-800 border border-dark-700 rounded-xl p-7 hover:-translate-y-1 hover:border-dark-600 transition-all duration-200">
-            <h2 class="text-xs font-medium text-dark-500 uppercase tracking-widest mb-6"
-                style="font-family:'Courier New',Courier,monospace;font-weight:700;letter-spacing:3px;">Projetos</h2>
-            <div class="grid grid-cols-1 gap-4">
-                <div class="card-projeto bg-dark-900 border border-dark-700 rounded-lg p-5 cursor-pointer">
-                    <div class="flex items-start justify-between mb-3">
-                        <h3 class="text-sm font-medium text-dark-100">Portfólio Pessoal</h3>
-                        <a href="https://dayannasilva-dev.github.io/meu-projeto" target="_blank"
-                           class="text-teal-400 hover:text-teal-300 text-xs transition-colors">Ver site →</a>
+                <p class="text-dark-300 text-sm leading-relaxed mb-4">
+                    Atuo como <span style="color:#16bdb4;font-weight:600;">Analista de Sistemas Pleno</span> com sólida experiência no desenvolvimento e 
+                    sustentação de soluções em Java, com foco em ambientes corporativos e sistemas ERP, 
+                    especialmente o <span style="color:#16bdb4;font-weight:600;">Datasul</span>. Ao longo da minha trajetória, desenvolvi competências que unem 
+                    visão técnica e entendimento de negócio, contribuindo para a evolução contínua de 
+                    sistemas críticos e otimizando processos organizacionais.
+                </p>
+                <p class="text-dark-300 text-sm leading-relaxed mb-4">
+                    Sempre em busca de evolução profissional, acompanhando novas tecnologias e boas práticas 
+                    de desenvolvimento para entregar soluções cada vez mais eficientes. 🚀
+                </p>
+
+                <!-- Tags -->
+                <div class="flex flex-wrap gap-2 mb-6">
+                    <span class="hashtag bg-purple-900 text-purple-300 text-xs px-3 py-1 rounded-full border border-purple-700 cursor-pointer">#AnalistaDeSistemas</span>
+                    <span class="hashtag bg-purple-900 text-purple-300 text-xs px-3 py-1 rounded-full border border-purple-700 cursor-pointer">#Tecnologia</span>
+                    <span class="hashtag bg-purple-900 text-purple-300 text-xs px-3 py-1 rounded-full border border-purple-700 cursor-pointer">#Desenvolvimento</span>
+                    <span class="hashtag bg-purple-900 text-purple-300 text-xs px-3 py-1 rounded-full border border-purple-700 cursor-pointer">#TI</span>
+                    <span class="hashtag bg-purple-900 text-purple-300 text-xs px-3 py-1 rounded-full border border-purple-700 cursor-pointer">#Carreira</span>
+                </div>
+
+                <!-- Divisor -->
+                <div style="border-top:1px solid #2c2c2a;margin-bottom:20px;"></div>
+
+                <!-- Stats -->
+                <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px;">
+                    <div style="background:#131312;border:1px solid #2c2c2a;border-radius:10px;padding:14px;text-align:center;transition:border-color 0.2s;" onmouseover="this.style.borderColor='#16bdb4'" onmouseout="this.style.borderColor='#2c2c2a'">
+                        <div style="font-family:'Courier New',monospace;font-size:18px;font-weight:700;color:#16bdb4;">5+</div>
+                        <div style="font-size:9px;letter-spacing:1px;text-transform:uppercase;color:#5f5e5a;margin-top:5px;">Anos de exp.</div>
                     </div>
-                    <p class="text-dark-400 text-xs leading-relaxed mb-3">
-                        ⚛️ React.js | 🎯 TypeScript, JavaScript, Redux, NextJS | 📦 Frontend Escalável | 🚀 Otimizando Desempenho
-                    </p>
+                    <div style="background:#131312;border:1px solid #2c2c2a;border-radius:10px;padding:14px;text-align:center;transition:border-color 0.2s;" onmouseover="this.style.borderColor='#16bdb4'" onmouseout="this.style.borderColor='#2c2c2a'">
+                        <div style="font-family:'Courier New',monospace;font-size:18px;font-weight:700;color:#16bdb4;">ERP</div>
+                        <div style="font-size:9px;letter-spacing:1px;text-transform:uppercase;color:#5f5e5a;margin-top:5px;">Especialidade</div>
+                    </div>
+                    <div style="background:#131312;border:1px solid #2c2c2a;border-radius:10px;padding:14px;text-align:center;transition:border-color 0.2s;" onmouseover="this.style.borderColor='#7c3aed'" onmouseout="this.style.borderColor='#2c2c2a'">
+                        <div style="font-family:'Courier New',monospace;font-size:18px;font-weight:700;color:#a78bfa;">Java</div>
+                        <div style="font-size:9px;letter-spacing:1px;text-transform:uppercase;color:#5f5e5a;margin-top:5px;">Stack principal</div>
+                    </div>
+                    <div style="background:#131312;border:1px solid #2c2c2a;border-radius:10px;padding:14px;text-align:center;transition:border-color 0.2s;" onmouseover="this.style.borderColor='#7c3aed'" onmouseout="this.style.borderColor='#2c2c2a'">
+                        <div style="font-family:'Courier New',monospace;font-size:18px;font-weight:700;color:#a78bfa;">SQL</div>
+                        <div style="font-size:9px;letter-spacing:1px;text-transform:uppercase;color:#5f5e5a;margin-top:5px;">Banco de dados</div>
+                    </div>
                 </div>
-                <div class="card-projeto bg-dark-900 border border-dashed border-dark-600 rounded-lg p-5 text-center">
-                    <p class="text-dark-500 text-xs">🚀 Mais projetos em breve...</p>
+
+                <!-- Cards informativos -->
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px;">
+                    <div style="background:#131312;border:1px solid #2c2c2a;border-left:3px solid #16bdb4;border-radius:10px;padding:16px 18px;transition:background 0.2s;" onmouseover="this.style.background='#1e1e1c'" onmouseout="this.style.background='#131312'">
+                        <div style="font-family:'Courier New',monospace;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:#16bdb4;margin-bottom:7px;">Experiência</div>
+                        <div style="font-size:12px;color:#888780;line-height:1.6;">Desenvolvimento e sustentação de sistemas Java corporativos com foco em ERP Datasul.</div>
+                    </div>
+                    <div style="background:#131312;border:1px solid #2c2c2a;border-left:3px solid #16bdb4;border-radius:10px;padding:16px 18px;transition:background 0.2s;" onmouseover="this.style.background='#1e1e1c'" onmouseout="this.style.background='#131312'">
+                        <div style="font-family:'Courier New',monospace;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:#16bdb4;margin-bottom:7px;">Objetivo</div>
+                        <div style="font-size:12px;color:#888780;line-height:1.6;">Evoluir com novas tecnologias e boas práticas para entregar soluções eficientes e escaláveis.</div>
+                    </div>
+                    <div style="background:#131312;border:1px solid #2c2c2a;border-left:3px solid #7c3aed;border-radius:10px;padding:16px 18px;transition:background 0.2s;" onmouseover="this.style.background='#1e1e1c'" onmouseout="this.style.background='#131312'">
+                        <div style="font-family:'Courier New',monospace;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:#a78bfa;margin-bottom:7px;">Visão</div>
+                        <div style="font-size:12px;color:#888780;line-height:1.6;">Unir visão técnica e entendimento de negócio para melhorar processos organizacionais.</div>
+                    </div>
+                    <div style="background:#131312;border:1px solid #2c2c2a;border-left:3px solid #7c3aed;border-radius:10px;padding:16px 18px;transition:background 0.2s;" onmouseover="this.style.background='#1e1e1c'" onmouseout="this.style.background='#131312'">
+                        <div style="font-family:'Courier New',monospace;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:#a78bfa;margin-bottom:7px;">Foco Atual</div>
+                        <div style="font-size:12px;color:#888780;line-height:1.6;">Modernização do fluxo de dev com SQL Server, VS Code e boas práticas.</div>
+                    </div>
+                </div>
+
+                <!-- Botões de ação -->
+                <div style="display:flex;gap:10px;flex-wrap:wrap;">
+                    <button onclick="switchTab('projetos')"
+                        style="background:linear-gradient(90deg,#16bdb4,#7c3aed);color:#fff;border:none;padding:9px 22px;border-radius:8px;font-size:12px;font-family:'Courier New',monospace;letter-spacing:1px;cursor:pointer;transition:opacity 0.2s;"
+                        onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">
+                        Ver Projetos →
+                    </button>
+                    <button onclick="switchTab('habilidades')"
+                        style="background:transparent;color:#16bdb4;border:1px solid #16bdb4;padding:9px 22px;border-radius:8px;font-size:12px;font-family:'Courier New',monospace;letter-spacing:1px;cursor:pointer;transition:all 0.2s;"
+                        onmouseover="this.style.background='rgba(22,189,180,0.1)'" onmouseout="this.style.background='transparent'">
+                        Ver Habilidades
+                    </button>
+                    <button onclick="switchTab('contato')"
+                        style="background:transparent;color:#a78bfa;border:1px solid #7c3aed;padding:9px 22px;border-radius:8px;font-size:12px;font-family:'Courier New',monospace;letter-spacing:1px;cursor:pointer;transition:all 0.2s;"
+                        onmouseover="this.style.background='rgba(124,58,237,0.1)'" onmouseout="this.style.background='transparent'">
+                        Contato
+                    </button>
                 </div>
             </div>
-        </section>
 
-        <!-- Contato -->
-        <section id="contato" class="section-animate bg-dark-800 border border-dark-700 rounded-xl p-7 hover:-translate-y-1 hover:border-dark-600 transition-all duration-200">
-            <h2 class="text-xs font-medium text-dark-500 uppercase tracking-widest mb-4"
-                style="font-family:'Courier New',Courier,monospace;font-weight:700;letter-spacing:3px;">Contato</h2>
-            <form id="form-contato" class="flex flex-col gap-3">
-                <label for="nome" class="text-dark-400 text-sm">Nome</label>
-                <input type="text" id="nome" name="nome" required placeholder="Seu nome"
-                    class="bg-dark-900 border border-dark-700 rounded-lg px-4 py-2 text-sm text-dark-100 placeholder-dark-500 focus:outline-none focus:border-teal-600 transition-colors">
-                <label for="email" class="text-dark-400 text-sm">Email</label>
-                <input type="email" id="email" name="email" required placeholder="seu@email.com"
-                    class="bg-dark-900 border border-dark-700 rounded-lg px-4 py-2 text-sm text-dark-100 placeholder-dark-500 focus:outline-none focus:border-teal-600 transition-colors">
-                <label for="mensagem" class="text-dark-400 text-sm">Mensagem</label>
-                <textarea id="mensagem" name="mensagem" rows="5" required placeholder="Sua mensagem..."
-                    class="bg-dark-900 border border-dark-700 rounded-lg px-4 py-2 text-sm text-dark-100 placeholder-dark-500 focus:outline-none focus:border-teal-600 transition-colors resize-y"></textarea>
-                <button type="submit"
-                    class="self-start mt-1 bg-teal-700 hover:bg-teal-600 text-white text-sm font-medium px-6 py-2 rounded-lg active:scale-95 transition-all duration-150">
-                    Enviar mensagem
-                </button>
-                <div id="sucesso" class="alerta hidden mt-2 p-3 rounded-lg text-sm font-medium"></div>
-            </form>
-        </section>
+            <!-- Habilidades -->
+            <div id="tab-habilidades" class="tab-panel p-7" style="animation-delay:0.10s; background-position: right center; filter: brightness(1.0)">
+                <h2 class="text-xs font-medium text-dark-500 uppercase tracking-widest mb-6"
+                    style="font-family:'Courier New',Courier,monospace;font-weight:700;letter-spacing:3px;">Habilidades</h2>
+                <div class="flex flex-col gap-4 mb-6">
+                    <div>
+                        <div class="flex justify-between text-xs text-dark-400 mb-3"><span>Java</span><span>90%</span></div>
+                        <div class="progress-bar"><div class="progress-fill" data-width="90"></div></div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between text-xs text-dark-400 mb-3"><span>JavaScript / TypeScript</span><span>75%</span></div>
+                        <div class="progress-bar"><div class="progress-fill" data-width="75"></div></div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between text-xs text-dark-400 mb-3"><span>Spring Boot</span><span>80%</span></div>
+                        <div class="progress-bar"><div class="progress-fill" data-width="80"></div></div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between text-xs text-dark-400 mb-3"><span>ReactJS</span><span>65%</span></div>
+                        <div class="progress-bar"><div class="progress-fill" data-width="65"></div></div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between text-xs text-dark-400 mb-3"><span>HTML / CSS</span><span>85%</span></div>
+                        <div class="progress-bar"><div class="progress-fill" data-width="85"></div></div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between text-xs text-dark-500 mb-3"><span>Maven</span><span>85%</span></div>
+                        <div class="progress-bar"><div class="progress-fill" data-width="85"></div></div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between text-xs text-dark-400 mb-3"><span>MySQL</span><span>80%</span></div>
+                        <div class="progress-bar"><div class="progress-fill" data-width="80"></div></div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between text-xs text-dark-400 mb-3"><span>Hibernate / JAPA</span><span>80%</span></div>
+                        <div class="progress-bar"><div class="progress-fill" data-width="80"></div></div>
+                    </div>
+                </div>
+                <div class="flex flex-wrap gap-3">
+                    <span class="hashtag bg-teal-900 text-teal-300 text-xs px-3 py-1 rounded-full border border-teal-700 cursor-pointer">Java</span>
+                    <span class="hashtag bg-teal-900 text-teal-300 text-xs px-3 py-1 rounded-full border border-teal-700 cursor-pointer">JavaScript</span>
+                    <span class="hashtag bg-teal-900 text-teal-300 text-xs px-3 py-1 rounded-full border border-teal-700 cursor-pointer">TypeScript</span>
+                    <span class="hashtag bg-teal-900 text-teal-300 text-xs px-3 py-1 rounded-full border border-teal-700 cursor-pointer">ReactJS</span>
+                    <span class="hashtag bg-teal-900 text-teal-300 text-xs px-3 py-1 rounded-full border border-teal-700 cursor-pointer">Maven</span>
+                    <span class="hashtag bg-teal-900 text-teal-300 text-xs px-3 py-1 rounded-full border border-teal-700 cursor-pointer">Spring</span>
+                    <span class="hashtag bg-teal-900 text-teal-300 text-xs px-3 py-1 rounded-full border border-teal-700 cursor-pointer">Spring Boot</span>
+                    <span class="hashtag bg-teal-900 text-teal-300 text-xs px-3 py-1 rounded-full border border-teal-700 cursor-pointer">CSS</span>
+                    <span class="hashtag bg-teal-900 text-teal-300 text-xs px-3 py-1 rounded-full border border-teal-700 cursor-pointer">HTML</span>
+                    <span class="hashtag bg-teal-900 text-teal-300 text-xs px-3 py-1 rounded-full border border-teal-700 cursor-pointer">Git/GitHub</span>
+                    <span class="hashtag bg-teal-900 text-teal-300 text-xs px-3 py-1 rounded-full border border-teal-700 cursor-pointer">Hibernate / JPA</span>
+                    <span class="hashtag bg-teal-900 text-teal-300 text-xs px-3 py-1 rounded-full border border-teal-700 cursor-pointer">JDBC</span>
+                    <span class="hashtag bg-teal-900 text-teal-300 text-xs px-3 py-1 rounded-full border border-teal-700 cursor-pointer">MySQL</span>
+                </div>
+            </div>
 
+            <!-- Projetos -->
+            <div id="tab-projetos" class="tab-panel p-7">
+                <h2 class="text-xs font-medium text-dark-500 uppercase tracking-widest mb-2"
+                    style="font-family:'Courier New',Courier,monospace;font-weight:700;letter-spacing:3px;">Projetos</h2>
+                <p class="text-dark-500 text-xs mb-6">Alguns projetos que desenvolvi ou estou desenvolvendo.</p>
+
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+
+                    <!-- Card 1 - Portfólio -->
+                    <div class="card-projeto bg-dark-900 border border-dark-700 rounded-lg p-5 cursor-pointer" style="transition:all 0.25s;">
+                        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px;">
+                            <div style="display:flex;align-items:center;gap:8px;">
+                                <span style="font-size:18px;">🌐</span>
+                                <h3 class="text-sm font-medium text-dark-100">Portfólio Pessoal</h3>
+                            </div>
+                            <a href="https://dayannasilva-dev.github.io/meu-projeto" target="_blank"
+                               style="color:#16bdb4;font-size:11px;text-decoration:none;white-space:nowrap;" 
+                               onmouseover="this.style.color='#0e9a93'" onmouseout="this.style.color='#16bdb4'">Ver site →</a>
+                        </div>
+                        <p style="color:#5f5e5a;font-size:11.5px;line-height:1.6;margin-bottom:12px;">
+                            Site de portfólio responsivo com animações, tabs interativas e design dark moderno.
+                        </p>
+                        <div style="display:flex;flex-wrap:wrap;gap:6px;">
+                            <span style="background:#1a2a1a;color:#4ade80;border:1px solid #166534;font-size:10px;padding:2px 10px;border-radius:20px;">HTML</span>
+                            <span style="background:#1a2a1a;color:#4ade80;border:1px solid #166534;font-size:10px;padding:2px 10px;border-radius:20px;">CSS</span>
+                            <span style="background:#1a2a1a;color:#4ade80;border:1px solid #166534;font-size:10px;padding:2px 10px;border-radius:20px;">JavaScript</span>
+                        </div>
+                    </div>
+
+                    <!-- Card 2 - API REST -->
+                    <div class="card-projeto bg-dark-900 border border-dark-700 rounded-lg p-5 cursor-pointer" style="transition:all 0.25s;">
+                        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px;">
+                            <div style="display:flex;align-items:center;gap:8px;">
+                                <span style="font-size:18px;">⚙️</span>
+                                <h3 class="text-sm font-medium text-dark-100">API REST Java</h3>
+                            </div>
+                            <a href="https://github.com/dayannasilva-Dev" target="_blank"
+                               style="color:#16bdb4;font-size:11px;text-decoration:none;white-space:nowrap;"
+                               onmouseover="this.style.color='#0e9a93'" onmouseout="this.style.color='#16bdb4'">Ver repo →</a>
+                        </div>
+                        <p style="color:#5f5e5a;font-size:11.5px;line-height:1.6;margin-bottom:12px;">
+                            API RESTful com Spring Boot, autenticação JWT, integração MySQL e documentação Swagger.
+                        </p>
+                        <div style="display:flex;flex-wrap:wrap;gap:6px;">
+                            <span style="background:#1a1a2e;color:#818cf8;border:1px solid #3730a3;font-size:10px;padding:2px 10px;border-radius:20px;">Java</span>
+                            <span style="background:#1a1a2e;color:#818cf8;border:1px solid #3730a3;font-size:10px;padding:2px 10px;border-radius:20px;">Spring Boot</span>
+                            <span style="background:#1a1a2e;color:#818cf8;border:1px solid #3730a3;font-size:10px;padding:2px 10px;border-radius:20px;">MySQL</span>
+                        </div>
+                    </div>
+
+                    <!-- Card 3 - ERP Module -->
+                    <div class="card-projeto bg-dark-900 border border-dark-700 rounded-lg p-5 cursor-pointer" style="transition:all 0.25s;">
+                        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px;">
+                            <div style="display:flex;align-items:center;gap:8px;">
+                                <span style="font-size:18px;">🏢</span>
+                                <h3 class="text-sm font-medium text-dark-100">Módulo ERP</h3>
+                            </div>
+                            <a href="https://github.com/dayannasilva-Dev" target="_blank"
+                               style="color:#16bdb4;font-size:11px;text-decoration:none;white-space:nowrap;"
+                               onmouseover="this.style.color='#0e9a93'" onmouseout="this.style.color='#16bdb4'">Ver repo →</a>
+                        </div>
+                        <p style="color:#5f5e5a;font-size:11.5px;line-height:1.6;margin-bottom:12px;">
+                            Módulo de gestão de processos integrado ao Datasul com regras de negócio customizadas.
+                        </p>
+                        <div style="display:flex;flex-wrap:wrap;gap:6px;">
+                            <span style="background:#1a1a2e;color:#818cf8;border:1px solid #3730a3;font-size:10px;padding:2px 10px;border-radius:20px;">Java</span>
+                            <span style="background:#1a1a2e;color:#818cf8;border:1px solid #3730a3;font-size:10px;padding:2px 10px;border-radius:20px;">Datasul</span>
+                            <span style="background:#1a1a2e;color:#818cf8;border:1px solid #3730a3;font-size:10px;padding:2px 10px;border-radius:20px;">SQL</span>
+                        </div>
+                    </div>
+
+                    <!-- Card 4 - Dashboard React -->
+                    <div class="card-projeto bg-dark-900 border border-dark-700 rounded-lg p-5 cursor-pointer" style="transition:all 0.25s;">
+                        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px;">
+                            <div style="display:flex;align-items:center;gap:8px;">
+                                <span style="font-size:18px;">📊</span>
+                                <h3 class="text-sm font-medium text-dark-100">Dashboard React</h3>
+                            </div>
+                            <a href="https://github.com/dayannasilva-Dev" target="_blank"
+                               style="color:#16bdb4;font-size:11px;text-decoration:none;white-space:nowrap;"
+                               onmouseover="this.style.color='#0e9a93'" onmouseout="this.style.color='#16bdb4'">Ver repo →</a>
+                        </div>
+                        <p style="color:#5f5e5a;font-size:11.5px;line-height:1.6;margin-bottom:12px;">
+                            Dashboard analítico com gráficos interativos, filtros dinâmicos e consumo de API externa.
+                        </p>
+                        <div style="display:flex;flex-wrap:wrap;gap:6px;">
+                            <span style="background:#1a2a1a;color:#4ade80;border:1px solid #166534;font-size:10px;padding:2px 10px;border-radius:20px;">ReactJS</span>
+                            <span style="background:#1a2a1a;color:#4ade80;border:1px solid #166534;font-size:10px;padding:2px 10px;border-radius:20px;">TypeScript</span>
+                            <span style="background:#1a2a1a;color:#4ade80;border:1px solid #166534;font-size:10px;padding:2px 10px;border-radius:20px;">REST API</span>
+                        </div>
+                    </div>
+
+                    <!-- Card "em breve" -->
+                    <div style="grid-column:span 2;background:#131312;border:1px dashed #2c2c2a;border-radius:10px;padding:18px;text-align:center;">
+                        <p style="color:#5f5e5a;font-size:12px;">🚀 Mais projetos em breve...</p>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Contato -->
+            <div id="tab-contato" class="tab-panel p-7">
+                <h2 class="text-xs font-medium text-dark-500 uppercase tracking-widest mb-4"
+                    style="font-family:'Courier New',Courier,monospace;font-weight:700;letter-spacing:3px;">Contato</h2>
+                <form id="form-contato" class="flex flex-col gap-3">
+                    <label for="nome" class="text-dark-400 text-sm">Nome</label>
+                    <input type="text" id="nome" name="nome" required placeholder="Seu nome"
+                        class="bg-dark-900 border border-dark-700 rounded-lg px-4 py-2 text-sm text-dark-100 placeholder-dark-500 focus:outline-none focus:border-teal-600 transition-colors">
+                    <label for="email" class="text-dark-400 text-sm">Email</label>
+                    <input type="email" id="email" name="email" required placeholder="seu@email.com"
+                        class="bg-dark-900 border border-dark-700 rounded-lg px-4 py-2 text-sm text-dark-100 placeholder-dark-500 focus:outline-none focus:border-teal-600 transition-colors">
+                    <label for="mensagem" class="text-dark-400 text-sm">Mensagem</label>
+                    <textarea id="mensagem" name="mensagem" rows="5" required placeholder="Sua mensagem..."
+                        class="bg-dark-900 border border-dark-700 rounded-lg px-4 py-2 text-sm text-dark-100 placeholder-dark-500 focus:outline-none focus:border-teal-600 transition-colors resize-y"></textarea>
+                    <button type="submit"
+                        class="self-start mt-1 bg-teal-700 hover:bg-teal-600 text-white text-sm font-medium px-6 py-2 rounded-lg active:scale-95 transition-all duration-150">
+                        Enviar mensagem
+                    </button>
+                    <div id="sucesso" class="alerta hidden mt-2 p-3 rounded-lg text-sm font-medium"></div>
+                </form>
+            </div>
+
+        </div><!-- fim tabs container -->
     </main>
         </div>
     </div>
@@ -325,14 +596,45 @@
 
     <script src="assets/js/script.js"></script>
     <script>
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    entry.target.querySelectorAll('.progress-fill').forEach(bar => {
+        // ── TABS ──
+        function switchTab(name) {
+            // Atualiza botões
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                const isActive = btn.getAttribute('onclick') === "switchTab('" + name + "')";
+                btn.classList.toggle('active', isActive);
+                btn.setAttribute('aria-selected', isActive);
+            });
+            // Atualiza painéis
+            document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+            const panel = document.getElementById('tab-' + name);
+            if (panel) panel.classList.add('active');
+            if (name === 'habilidades') animateBars();
+        }
+
+        function animateBars() {
+            document.querySelectorAll('#tab-habilidades .progress-fill').forEach(bar => {
+                bar.style.width = '0%';
+                // requestAnimationFrame garante que o display:block já foi aplicado antes da transição
+                requestAnimationFrame(() => {
+                    requestAnimationFrame(() => {
                         bar.style.width = bar.dataset.width + '%';
                     });
-                }
+                });
+            });
+        }
+
+        // ── Anima barras ao carregar e ao trocar para a aba habilidades ──
+        window.addEventListener('load', () => {
+            document.querySelectorAll('.tabs-container').forEach(el => {
+                el.style.opacity = '1';
+                el.style.transform = 'none';
+            });
+        });
+
+        // ── Section animate observer ──
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('visible');
             });
         }, { threshold: 0.1 });
 
